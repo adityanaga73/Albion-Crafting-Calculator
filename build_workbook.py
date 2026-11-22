@@ -51,15 +51,15 @@ hdr(calc,12,["Material ID","Material Name","Qty / Batch","Total Qty Needed","Uni
 for n in range(30):
  row=13+n; key=f'$B$4&"|"&$B$5&"|"&ROWS($A$13:A{row})'
  formulas=[
- f'=IFERROR(INDEX(\\'Recipe Database\\'!$G$4:$G$20000,MATCH({key},\\'Recipe Database\\'!$N$4:$N$20000,0)),"")',
- f'=IFERROR(INDEX(\\'Recipe Database\\'!$H$4:$H$20000,MATCH({key},\\'Recipe Database\\'!$N$4:$N$20000,0)),"")',
- f'=IFERROR(INDEX(\\'Recipe Database\\'!$I$4:$I$20000,MATCH({key},\\'Recipe Database\\'!$N$4:$N$20000,0)),0)',
+ f"=IFERROR(INDEX('Recipe Database'!$G$4:$G$20000,MATCH({key},'Recipe Database'!$N$4:$N$20000,0)),"")",
+ f"=IFERROR(INDEX('Recipe Database'!$H$4:$H$20000,MATCH({key},'Recipe Database'!$N$4:$N$20000,0)),"")",
+ f"=IFERROR(INDEX('Recipe Database'!$I$4:$I$20000,MATCH({key},'Recipe Database'!$N$4:$N$20000,0)),0)",
  f'=C{row}*$B$6',
- f'=IFERROR(VLOOKUP(A{row},\\'Market Prices\\'!$A$4:$C$20000,3,FALSE),0)',
+ f"=IFERROR(VLOOKUP(A{row},'Market Prices'!$A$4:$C$20000,3,FALSE),0)",
  f'=D{row}*E{row}',f'=F{row}*(1-$B$8)',f'=IF(A{row}="","",IF(E{row}>0,"Price entered","ENTER PRICE"))']
  for j,formula in enumerate(formulas,1): calc.cell(row,j,formula)
 hdr(calc,45,["SUMMARY","Value"])
-summ=[("Total Material Cost","=SUM(F13:F42)"),("Material Cost After Return","=SUM(G13:G42)"),("Crafting Station Fees","=Settings!B6*$B$6"),("Other Fees","=Settings!B7*$B$6"),("TOTAL CRAFTING COST","=B47+B48+B49"),("Total Output Units",'=IFERROR(INDEX(\\'Recipe Database\\'!$J$4:$J$20000,MATCH($B$4&"|"&$B$5&"|1",\\'Recipe Database\\'!$N$4:$N$20000,0))*$B$6,0)'),("Gross Sales Value","=B51*$B$7"),("Market Sell Tax","=B52*Settings!B5"),("NET SALES VALUE","=B52-B53"),("ESTIMATED PROFIT / LOSS","=B54-B50"),("Profit per Output Unit","=IFERROR(B55/B51,0)"),("ROI","=IFERROR(B55/B50,0)")]
+summ=[("Total Material Cost","=SUM(F13:F42)"),("Material Cost After Return","=SUM(G13:G42)"),("Crafting Station Fees","=Settings!B6*$B$6"),("Other Fees","=Settings!B7*$B$6"),("TOTAL CRAFTING COST","=B47+B48+B49"),("Total Output Units","=IFERROR(INDEX('Recipe Database'!$J$4:$J$20000,MATCH($B$4&"|"&$B$5&"|1",'Recipe Database'!$N$4:$N$20000,0))*$B$6,0)"),("Gross Sales Value","=B51*$B$7"),("Market Sell Tax","=B52*Settings!B5"),("NET SALES VALUE","=B52-B53"),("ESTIMATED PROFIT / LOSS","=B54-B50"),("Profit per Output Unit","=IFERROR(B55/B51,0)"),("ROI","=IFERROR(B55/B50,0)")]
 for i,(label,formula) in enumerate(summ,46): calc.cell(i,1,label); calc.cell(i,2,formula); calc.cell(i,2).number_format="#,##0.00"
 calc["B57"].number_format="0.00%"; calc["A59"]="Price Check"; calc["B59"]='=IF(COUNTIF(H13:H42,"ENTER PRICE")>0,"Some material prices are missing","All listed material prices entered")'; calc.merge_cells("B59:H59")
 for c,w in {"A":30,"B":42,"C":15,"D":19,"E":19,"F":19,"G":20,"H":20}.items(): calc.column_dimensions[c].width=w
