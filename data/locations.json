@@ -1,0 +1,40 @@
+{
+  "_comment": "Maps the raw numeric LocationId strings that come off the NATS feed to friendly city names. Multiple numeric IDs can map to the same city (main city zone id, the market-building id, sometimes a portal/rest id). Confirmed from ao-bin-dumps world.json. blackMarketIds lists every raw id that resolves to the Black Market NPC in Caerleon. ID '7' was observed in a live NATS sighting with equipment buy-orders — the signature of the BM. Additional common BM ids from community tools included.",
+
+  "cityIdMap": {
+    "3003": "Caerleon",
+    "3005": "Caerleon",
+    "3006": "Caerleon",
+    "2000": "Bridgewatch",
+    "2003": "Bridgewatch",
+    "2004": "Bridgewatch",
+    "3004": "Martlock",
+    "3007": "Martlock",
+    "3008": "Martlock",
+    "0000": "Thetford",
+    "0006": "Thetford",
+    "0007": "Thetford",
+    "1000": "Lymhurst",
+    "1001": "Lymhurst",
+    "1002": "Lymhurst",
+    "4000": "Fort Sterling",
+    "4001": "Fort Sterling",
+    "4002": "Fort Sterling",
+    "5000": "Brecilien",
+    "5001": "Brecilien",
+    "5002": "Brecilien",
+    "5003": "Brecilien"
+  },
+
+  "blackMarketIds": ["7", "0007-bm", "301", "0301"],
+
+  "cityList": [
+    "Caerleon",
+    "Bridgewatch",
+    "Martlock",
+    "Thetford",
+    "Lymhurst",
+    "Fort Sterling",
+    "Brecilien"
+  ]
+}
