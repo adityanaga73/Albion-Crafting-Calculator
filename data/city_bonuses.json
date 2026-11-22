@@ -1,0 +1,83 @@
+{
+  "_comment": "Return-rate + city-bonus reference data. The formula and bonus values are corroborated across the official Albion Online wiki (Resource Return Rate / Local Production Bonus pages) and multiple independent 2026 guides. The city->category mapping is corroborated across the official wiki version notes and community references and has been stable for years. Percentages are the best publicly documented values; the exact decimal Focus adds is not officially published (players have reverse-engineered ~59%), so treat return-rate output as a close estimate, not a guarantee -- always cross-check against the in-game crafting window if a decision is expensive.",
+
+  "formula": "totalBonus = baseCityBonus + (citySpecialty if crafting/refining in that item's bonus city) + (focusBonus if using focus) + dailyBonus; returnRate = totalBonus / (1 + totalBonus)",
+
+  "bonusComponents": {
+    "baseCityBonus": 0.18,
+    "_baseCityBonus_note": "Present at ANY public station in a Royal city (not private islands), for any item. Alone this yields ~15.3% return.",
+    "citySpecialtyCrafting": 0.15,
+    "_citySpecialtyCrafting_note": "Extra bonus for crafting equipment/weapons in that item's bonus city specifically.",
+    "citySpecialtyRefining": 0.40,
+    "_citySpecialtyRefining_note": "Extra bonus for refining a raw resource in that resource's bonus city specifically. Larger than the crafting specialty.",
+    "focusBonus": 0.59,
+    "_focusBonus_note": "Flat additive bonus when spending Crafting Focus on the craft/refine. Premium accounts regenerate 10,000 focus/24h, capped at 30,000 stored.",
+    "dailyBonusSilver": 0.10,
+    "dailyBonusGold": 0.20,
+    "_dailyBonus_note": "Each day, 2 item lines per city get an extra rotating daily production bonus (silver day +10%, gold day +20%). This rotates daily and isn't derivable from static data, so it's exposed as a manual toggle in the calculator rather than auto-applied."
+  },
+
+  "refiningBonusCity": {
+    "wood": "Fort Sterling",
+    "ore": "Thetford",
+    "fiber": "Lymhurst",
+    "hide": "Martlock",
+    "rock": "Bridgewatch"
+  },
+
+  "craftingBonusCity": {
+    "sword": "Lymhurst",
+    "bow": "Lymhurst",
+    "arcanestaff": "Lymhurst",
+    "leather_helmet": "Lymhurst",
+    "leather_shoes": "Lymhurst",
+
+    "axe": "Martlock",
+    "quarterstaff": "Martlock",
+    "froststaff": "Martlock",
+    "plate_shoes": "Martlock",
+    "offhand": "Martlock",
+
+    "crossbow": "Bridgewatch",
+    "dagger": "Bridgewatch",
+    "cursestaff": "Bridgewatch",
+    "plate_armor": "Bridgewatch",
+    "cloth_shoes": "Bridgewatch",
+
+    "hammer": "Fort Sterling",
+    "spear": "Fort Sterling",
+    "holystaff": "Fort Sterling",
+    "cloth_armor": "Fort Sterling",
+    "plate_helmet": "Fort Sterling",
+
+    "mace": "Thetford",
+    "naturestaff": "Thetford",
+    "firestaff": "Thetford",
+    "leather_armor": "Thetford",
+    "cloth_helmet": "Thetford",
+
+    "food": "Caerleon",
+    "tools": "Caerleon",
+    "gatherergear": "Caerleon",
+    "knuckles": "Caerleon",
+
+    "cape": "Brecilien",
+    "bag": "Brecilien",
+    "potion": "Brecilien"
+  },
+
+  "marketFees": {
+    "salesTaxPremium": 0.04,
+    "salesTaxNonPremium": 0.08,
+    "orderSetupFee": 0.025,
+    "_note": "Setup fee only applies if YOU place a buy/sell order and wait for it to fill. Instantly buying the cheapest sell order or instantly selling into the best buy order (what this calculator assumes) only pays the sales/transaction tax, no setup fee."
+  },
+
+  "_sources": [
+    "https://wiki.albiononline.com/wiki/Resource_Return_Rate",
+    "https://wiki.albiononline.com/wiki/Local_Production_Bonus",
+    "https://wiki.albiononline.com/wiki/Marketplace",
+    "https://wiki.albiononline.com/wiki/Cities",
+    "Community guides current as of mid-2026 (albioncodex.com, albionmarket.gg)"
+  ]
+}
