@@ -51,8 +51,8 @@ hdr(calc,12,["Material ID","Material Name","Qty / Batch","Total Qty Needed","Uni
 for n in range(30):
  row=13+n; key=f'$B$4&"|"&$B$5&"|"&ROWS($A$13:A{row})'
  formulas=[
- f"""=IFERROR(INDEX('Recipe Database'!$G$4:$G$20000,MATCH({key},'Recipe Database'!$N$4:$N$20000,0)),""",
- f"""=IFERROR(INDEX('Recipe Database'!$H$4:$H$20000,MATCH({key},'Recipe Database'!$N$4:$N$20000,0)),""",
+ f"""=IFERROR(INDEX('Recipe Database'!$G$4:$G$20000,MATCH({key},'Recipe Database'!$N$4:$N$20000,0)),"")""",
+ f"""=IFERROR(INDEX('Recipe Database'!$H$4:$H$20000,MATCH({key},'Recipe Database'!$N$4:$N$20000,0)),"")""",
  f"=IFERROR(INDEX('Recipe Database'!$I$4:$I$20000,MATCH({key},'Recipe Database'!$N$4:$N$20000,0)),0)",
  f'=C{row}*$B$6',
  f"=IFERROR(VLOOKUP(A{row},'Market Prices'!$A$4:$C$20000,3,FALSE),0)",
